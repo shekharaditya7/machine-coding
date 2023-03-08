@@ -125,17 +125,17 @@ class LinkedList {
   }
 }
 
-const myList = new LinkedList();
-myList.push_front(1);
-myList.push_front(2);
-myList.push_back(3);
-myList.push_back(4);
-myList.pop_back();
-myList.pop_front();
-myList.delete(3);
-myList.push_front(2);
-myList.push_back(3);
-myList.push_back(4);
-myList.print();
+// const myList = new LinkedList();
+// myList.push_front(1);
+// myList.push_front(2);
+// myList.push_back(3);
+// myList.push_back(4);
+// myList.pop_back();
+// myList.pop_front();
+// myList.delete(3);
+// myList.push_front(2);
+// myList.push_back(3);
+// myList.push_back(4);
+// myList.print();
 
 export default LinkedList;

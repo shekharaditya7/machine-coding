@@ -1,4 +1,4 @@
-class DoublyLinkedListNode {
+export class DoublyLinkedListNode {
   val: number;
   next: DoublyLinkedListNode | null;
   prev: DoublyLinkedListNode | null;
@@ -51,15 +51,17 @@ class DoublyLinkedList {
   }
 
   pop_back() {
-    if (this.size === 0) return this.head;
+    if (this.size === 0) return this.head?.val;
     if (this.size === 1) {
+      const val = this.head?.val;
       this.head = null;
       this.tail = null;
       this.size--;
-      return this.head;
+      return val;
     }
 
     if (this.tail) {
+      const val = this.tail.val;
       let prevNode: DoublyLinkedListNode | null = this.tail.prev;
       if (prevNode) {
         this.size--;
@@ -67,8 +69,8 @@ class DoublyLinkedList {
         prevNode.next = null;
         this.tail = prevNode;
       }
+      return val;
     }
-    return this.head;
   }
 
   pop_front() {
@@ -137,17 +139,17 @@ class DoublyLinkedList {
   }
 }
 
-const myList = new DoublyLinkedList();
-myList.push_front(1);
-myList.push_front(2);
-myList.push_back(3);
-myList.push_back(4);
-myList.pop_back();
-myList.pop_front();
-myList.delete(3);
-myList.push_front(2);
-myList.push_back(3);
-myList.push_back(4);
-myList.print();
+// const myList = new DoublyLinkedList();
+// myList.push_front(1);
+// myList.push_front(2);
+// myList.push_back(3);
+// myList.push_back(4);
+// myList.pop_back();
+// myList.pop_front();
+// myList.delete(3);
+// myList.push_front(2);
+// myList.push_back(3);
+// myList.push_back(4);
+// myList.print();
 
 export default DoublyLinkedList;

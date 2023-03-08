@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.DoublyLinkedListNode = void 0;
 var DoublyLinkedListNode = /** @class */ (function () {
     function DoublyLinkedListNode(val) {
         this.val = val;
@@ -8,6 +9,7 @@ var DoublyLinkedListNode = /** @class */ (function () {
     }
     return DoublyLinkedListNode;
 }());
+exports.DoublyLinkedListNode = DoublyLinkedListNode;
 var DoublyLinkedList = /** @class */ (function () {
     function DoublyLinkedList() {
         this.size = 0;
@@ -44,15 +46,18 @@ var DoublyLinkedList = /** @class */ (function () {
         return this.head;
     };
     DoublyLinkedList.prototype.pop_back = function () {
+        var _a, _b;
         if (this.size === 0)
-            return this.head;
+            return (_a = this.head) === null || _a === void 0 ? void 0 : _a.val;
         if (this.size === 1) {
+            var val = (_b = this.head) === null || _b === void 0 ? void 0 : _b.val;
             this.head = null;
             this.tail = null;
             this.size--;
-            return this.head;
+            return val;
         }
         if (this.tail) {
+            var val = this.tail.val;
             var prevNode = this.tail.prev;
             if (prevNode) {
                 this.size--;
@@ -60,8 +65,8 @@ var DoublyLinkedList = /** @class */ (function () {
                 prevNode.next = null;
                 this.tail = prevNode;
             }
+            return val;
         }
-        return this.head;
     };
     DoublyLinkedList.prototype.pop_front = function () {
         var _a, _b;
@@ -126,16 +131,16 @@ var DoublyLinkedList = /** @class */ (function () {
     };
     return DoublyLinkedList;
 }());
-var myList = new DoublyLinkedList();
-myList.push_front(1);
-myList.push_front(2);
-myList.push_back(3);
-myList.push_back(4);
-myList.pop_back();
-myList.pop_front();
-myList.delete(3);
-myList.push_front(2);
-myList.push_back(3);
-myList.push_back(4);
-myList.print();
+// const myList = new DoublyLinkedList();
+// myList.push_front(1);
+// myList.push_front(2);
+// myList.push_back(3);
+// myList.push_back(4);
+// myList.pop_back();
+// myList.pop_front();
+// myList.delete(3);
+// myList.push_front(2);
+// myList.push_back(3);
+// myList.push_back(4);
+// myList.print();
 exports.default = DoublyLinkedList;
