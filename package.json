@@ -1,0 +1,27 @@
+{
+  "name": "machine-coding",
+  "version": "1.0.0",
+  "description": "Problems on Machine coding, Low Level Design",
+  "main": "src/index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shekharaditya7/machine-coding.git"
+  },
+  "keywords": [
+    "Low Level Design",
+    "Machine Coding"
+  ],
+  "author": "Aditya Shekhar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shekharaditya7/machine-coding/issues"
+  },
+  "homepage": "https://github.com/shekharaditya7/machine-coding#readme",
+  "devDependencies": {
+    "@types/node": "^18.14.6",
+    "typescript": "^4.9.5"
+  }
+}
