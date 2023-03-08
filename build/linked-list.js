@@ -94,6 +94,10 @@ var LinkedList = /** @class */ (function () {
         //Found
         if ((temp === null || temp === void 0 ? void 0 : temp.next) && (temp === null || temp === void 0 ? void 0 : temp.next.val) === val) {
             var nodeToBeDeleted = temp.next;
+            //update Tail
+            if (nodeToBeDeleted === this.tail) {
+                this.tail = temp;
+            }
             temp.next = nodeToBeDeleted.next;
             nodeToBeDeleted.next = null;
             this.size--;
@@ -118,5 +122,8 @@ myList.push_back(4);
 myList.pop_back();
 myList.pop_front();
 myList.delete(3);
+myList.push_front(2);
+myList.push_back(3);
+myList.push_back(4);
 myList.print();
 exports.default = LinkedList;

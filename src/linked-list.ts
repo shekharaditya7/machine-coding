@@ -102,6 +102,11 @@ class LinkedList {
     //Found
     if (temp?.next && temp?.next.val === val) {
       let nodeToBeDeleted = temp.next;
+
+      //update Tail
+      if (nodeToBeDeleted === this.tail) {
+        this.tail = temp;
+      }
       temp.next = nodeToBeDeleted.next;
       nodeToBeDeleted.next = null;
 
@@ -128,6 +133,9 @@ myList.push_back(4);
 myList.pop_back();
 myList.pop_front();
 myList.delete(3);
+myList.push_front(2);
+myList.push_back(3);
+myList.push_back(4);
 myList.print();
 
 export default LinkedList;
