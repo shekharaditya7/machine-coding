@@ -36,10 +36,11 @@ var LRUCache = /** @class */ (function () {
     };
     return LRUCache;
 }());
-var lruCache = new LRUCache(4);
-lruCache.get(1);
-lruCache.get(2);
-lruCache.get(3);
-lruCache.get(4);
-lruCache.get(5);
-lruCache.get(4);
+// const lruCache = new LRUCache(4);
+// lruCache.get(1);
+// lruCache.get(2);
+// lruCache.get(3);
+// lruCache.get(4);
+// lruCache.get(5);
+// lruCache.get(4);
+exports.default = LRUCache;
