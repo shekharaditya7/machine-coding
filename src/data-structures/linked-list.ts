@@ -28,7 +28,7 @@ class LinkedList {
       this.head = this.tail = newNode;
     }
     this.size++;
-    return this.head;
+    return newNode;
   }
 
   push_front(val: number) {
@@ -42,16 +42,16 @@ class LinkedList {
       this.head = this.tail = newNode;
     }
     this.size++;
-    return this.head;
+    return newNode
   }
 
   pop_back() {
-    if (this.size === 0) return this.head;
+    if (this.size === 0) return null;
     if (this.size === 1) {
       this.head = null;
       this.tail = null;
       this.size--;
-      return this.head;
+      return null;
     }
 
     let temp: LinkedListNode | null = this.head;
@@ -59,25 +59,29 @@ class LinkedList {
       while (temp && temp.next !== this.tail) {
         temp = temp.next;
       }
+      const deletedNode = this.tail;
       if (temp?.next) temp.next = null;
       this.tail = temp;
       this.size--;
-      return this.head;
+      return deletedNode;
     }
   }
 
   pop_front() {
-    if (this.size === 0) return this.head;
+    if (this.size === 0) return null;
     if (this.size === 1) {
       this.size--;
       this.head = this.tail = null;
-      return this.head;
+      return null;
     }
+    let deletedNode = null;
     if (this.head?.next) {
+      deletedNode = this.head;
       this.head = this.head?.next;
+      deletedNode.next = null;
       this.size--;
     }
-    return this.head;
+    return deletedNode;
   }
 
   delete(val: number) {
@@ -85,14 +89,16 @@ class LinkedList {
 
     // Deleting First Node
     if (temp && temp.val === val) {
+      const deletedNode = temp;
       temp = temp.next;
       this.head = temp;
       this.size--;
+      deletedNode.next = null;
 
       if (this.size === 0) {
         this.tail = this.head;
       }
-      return this.head;
+      return deletedNode;
     }
 
     while (temp && temp.next && temp.next.val !== val) {
@@ -111,9 +117,17 @@ class LinkedList {
       nodeToBeDeleted.next = null;
 
       this.size--;
-      return this.head;
+      return nodeToBeDeleted;
     }
-    return this.head;
+    return null;
+  }
+
+  find(val:number){
+    let temp: LinkedListNode | null = this.head;
+    while (temp && temp.val !== val) {
+      temp = temp.next;
+    }
+    return temp;
   }
 
   print() {
@@ -125,17 +139,18 @@ class LinkedList {
   }
 }
 
-// const myList = new LinkedList();
-// myList.push_front(1);
-// myList.push_front(2);
-// myList.push_back(3);
-// myList.push_back(4);
-// myList.pop_back();
-// myList.pop_front();
-// myList.delete(3);
-// myList.push_front(2);
-// myList.push_back(3);
-// myList.push_back(4);
-// myList.print();
+const myList = new LinkedList();
+myList.push_front(1);
+myList.push_front(2);
+myList.push_back(3);
+myList.push_back(4);
+myList.pop_back();
+myList.pop_front();
+myList.delete(3);
+myList.push_front(2);
+myList.push_back(3);
+myList.push_back(4);
+myList.find(1);
+myList.print();
 
 export default LinkedList;
