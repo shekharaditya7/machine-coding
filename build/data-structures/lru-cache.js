@@ -12,20 +12,20 @@ var LRUCache = /** @class */ (function () {
     }
     LRUCache.prototype.get = function (val) {
         if (this.hash.has(val)) {
-            console.log("Cache Hit");
+            // Cache Hit, update the order
             this.list.delete(val);
             this.list.push_front(val);
             this.list.print();
             return val;
         }
         if (this.hash.size < this.length) {
-            console.log("Cache Miss");
+            // Cache Miss
             this.hash.set(val, val);
             this.list.push_front(val);
             this.list.print();
             return val;
         }
-        console.log("Cache Full");
+        // Cache full, delete the least recently used entry
         var valToBeDeleted = this.list.pop_back();
         if (valToBeDeleted === null || valToBeDeleted === void 0 ? void 0 : valToBeDeleted.val)
             this.hash.delete(valToBeDeleted.val);
