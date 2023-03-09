@@ -29,7 +29,7 @@ var DoublyLinkedList = /** @class */ (function () {
             this.head = this.tail = newNode;
         }
         this.size++;
-        return this.head;
+        return newNode;
     };
     DoublyLinkedList.prototype.push_front = function (val) {
         var temp = this.head;
@@ -43,46 +43,54 @@ var DoublyLinkedList = /** @class */ (function () {
             this.head = this.tail = newNode;
         }
         this.size++;
-        return this.head;
+        return newNode;
     };
     DoublyLinkedList.prototype.pop_back = function () {
-        var _a, _b;
+        var deletedNode = null;
         if (this.size === 0)
-            return (_a = this.head) === null || _a === void 0 ? void 0 : _a.val;
+            return deletedNode;
         if (this.size === 1) {
-            var val = (_b = this.head) === null || _b === void 0 ? void 0 : _b.val;
+            deletedNode = this.head;
             this.head = null;
             this.tail = null;
             this.size--;
-            return val;
+            return deletedNode;
         }
         if (this.tail) {
-            var val = this.tail.val;
+            deletedNode = this.tail;
             var prevNode = this.tail.prev;
             if (prevNode) {
                 this.size--;
-                this.tail.prev = null;
+                deletedNode.prev = null;
+                deletedNode.next = null;
                 prevNode.next = null;
                 this.tail = prevNode;
             }
-            return val;
+            return deletedNode;
         }
     };
     DoublyLinkedList.prototype.pop_front = function () {
         var _a, _b;
+        var deletedNode = null;
         if (this.size === 0)
-            return this.head;
-        if (this.size === 1) {
+            return deletedNode;
+        if (this.size === 1 && this.head) {
+            deletedNode = this.head;
+            deletedNode.next = null;
+            deletedNode.prev = null;
             this.size--;
             this.head = this.tail = null;
-            return this.head;
+            return deletedNode;
         }
         if ((_a = this.head) === null || _a === void 0 ? void 0 : _a.next) {
+            deletedNode = this.head;
             this.head = (_b = this.head) === null || _b === void 0 ? void 0 : _b.next;
             this.head.prev = null;
+            deletedNode.next = null;
+            deletedNode.prev = null;
             this.size--;
         }
-        return this.head;
+        return deletedNode;
     };
     DoublyLinkedList.prototype.delete = function (val) {
         var _a;
@@ -91,8 +99,11 @@ var DoublyLinkedList = /** @class */ (function () {
         var temp = this.head;
         // Deleting First Node
         if (temp && temp.val === val) {
+            var deletedNode = temp;
             temp = temp.next;
             this.head = temp;
+            deletedNode.next = null;
+            deletedNode.prev = null;
             if (this.head)
                 this.head.prev = null;
             this.size--;
@@ -100,7 +111,7 @@ var DoublyLinkedList = /** @class */ (function () {
                 this.head = null;
                 this.tail = null;
             }
-            return this.head;
+            return deletedNode;
         }
         while (temp && temp.val !== val) {
             temp = temp.next;
@@ -108,6 +119,7 @@ var DoublyLinkedList = /** @class */ (function () {
         //Found
         if ((temp === null || temp === void 0 ? void 0 : temp.val) === val) {
             var prevNode = temp.prev;
+            var nodeToBeDeleted = temp;
             //update Tail
             if (temp === this.tail) {
                 this.tail = prevNode;
@@ -117,10 +129,19 @@ var DoublyLinkedList = /** @class */ (function () {
                 this.size--;
                 if ((_a = temp.next) === null || _a === void 0 ? void 0 : _a.prev)
                     temp.next.prev = prevNode;
-                return this.head;
+                nodeToBeDeleted.next = null;
+                nodeToBeDeleted.prev = null;
+                return nodeToBeDeleted;
             }
         }
-        return this.head;
+        return null;
+    };
+    DoublyLinkedList.prototype.find = function (val) {
+        var temp = this.head;
+        while (temp && temp.val !== val) {
+            temp = temp.next;
+        }
+        return temp;
     };
     DoublyLinkedList.prototype.print = function () {
         var temp = this.head;
@@ -132,15 +153,16 @@ var DoublyLinkedList = /** @class */ (function () {
     return DoublyLinkedList;
 }());
 // const myList = new DoublyLinkedList();
-// myList.push_front(1);
-// myList.push_front(2);
-// myList.push_back(3);
-// myList.push_back(4);
-// myList.pop_back();
-// myList.pop_front();
-// myList.delete(3);
-// myList.push_front(2);
-// myList.push_back(3);
-// myList.push_back(4);
+// console.log(myList.push_front(1));
+// console.log(myList.push_front(2));
+// console.log(myList.push_back(3));
+// console.log(myList.push_back(4));
+// console.log(myList.pop_back());
+// console.log(myList.pop_front());
+// console.log(myList.delete(3));
+// console.log(myList.push_front(2));
+// console.log(myList.push_back(3));
+// console.log(myList.push_back(4));
+// console.log(myList.find(1));
 // myList.print();
 exports.default = DoublyLinkedList;

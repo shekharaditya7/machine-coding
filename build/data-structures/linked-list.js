@@ -41,37 +41,41 @@ var LinkedList = /** @class */ (function () {
         return newNode;
     };
     LinkedList.prototype.pop_back = function () {
+        var deletedNode = null;
         if (this.size === 0)
-            return null;
+            return deletedNode;
         if (this.size === 1) {
+            deletedNode = this.head;
             this.head = null;
             this.tail = null;
             this.size--;
-            return null;
+            return deletedNode;
         }
         var temp = this.head;
         if (temp) {
             while (temp && temp.next !== this.tail) {
                 temp = temp.next;
             }
-            var deletedNode = this.tail;
+            var deletedNode_1 = this.tail;
             if (temp === null || temp === void 0 ? void 0 : temp.next)
                 temp.next = null;
             this.tail = temp;
             this.size--;
-            return deletedNode;
+            return deletedNode_1;
         }
     };
     LinkedList.prototype.pop_front = function () {
         var _a, _b;
+        var deletedNode = null;
         if (this.size === 0)
-            return null;
-        if (this.size === 1) {
+            return deletedNode;
+        if (this.size === 1 && this.head) {
+            deletedNode = this.head;
+            deletedNode.next = null;
             this.size--;
             this.head = this.tail = null;
-            return null;
+            return deletedNode;
         }
-        var deletedNode = null;
         if ((_a = this.head) === null || _a === void 0 ? void 0 : _a.next) {
             deletedNode = this.head;
             this.head = (_b = this.head) === null || _b === void 0 ? void 0 : _b.next;
@@ -127,17 +131,17 @@ var LinkedList = /** @class */ (function () {
     };
     return LinkedList;
 }());
-var myList = new LinkedList();
-myList.push_front(1);
-myList.push_front(2);
-myList.push_back(3);
-myList.push_back(4);
-myList.pop_back();
-myList.pop_front();
-myList.delete(3);
-myList.push_front(2);
-myList.push_back(3);
-myList.push_back(4);
-console.log(myList.find(1));
-myList.print();
+// const myList = new LinkedList();
+// console.log(myList.push_front(1));
+// console.log(myList.push_front(2));
+// console.log(myList.push_back(3));
+// console.log(myList.push_back(4));
+// console.log(myList.pop_back());
+// console.log(myList.pop_front());
+// console.log(myList.delete(3));
+// console.log(myList.push_front(2));
+// console.log(myList.push_back(3));
+// console.log(myList.push_back(4));
+// console.log(myList.find(1));
+// myList.print();
 exports.default = LinkedList;

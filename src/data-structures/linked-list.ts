@@ -42,16 +42,18 @@ class LinkedList {
       this.head = this.tail = newNode;
     }
     this.size++;
-    return newNode
+    return newNode;
   }
 
   pop_back() {
-    if (this.size === 0) return null;
+    let deletedNode = null;
+    if (this.size === 0) return deletedNode;
     if (this.size === 1) {
+      deletedNode = this.head;
       this.head = null;
       this.tail = null;
       this.size--;
-      return null;
+      return deletedNode;
     }
 
     let temp: LinkedListNode | null = this.head;
@@ -68,13 +70,15 @@ class LinkedList {
   }
 
   pop_front() {
-    if (this.size === 0) return null;
-    if (this.size === 1) {
+    let deletedNode = null;
+    if (this.size === 0) return deletedNode;
+    if (this.size === 1 && this.head) {
+      deletedNode = this.head;
+      deletedNode.next = null;
       this.size--;
       this.head = this.tail = null;
-      return null;
+      return deletedNode;
     }
-    let deletedNode = null;
     if (this.head?.next) {
       deletedNode = this.head;
       this.head = this.head?.next;
@@ -122,7 +126,7 @@ class LinkedList {
     return null;
   }
 
-  find(val:number){
+  find(val: number) {
     let temp: LinkedListNode | null = this.head;
     while (temp && temp.val !== val) {
       temp = temp.next;
@@ -139,18 +143,18 @@ class LinkedList {
   }
 }
 
-const myList = new LinkedList();
-myList.push_front(1);
-myList.push_front(2);
-myList.push_back(3);
-myList.push_back(4);
-myList.pop_back();
-myList.pop_front();
-myList.delete(3);
-myList.push_front(2);
-myList.push_back(3);
-myList.push_back(4);
-myList.find(1);
-myList.print();
+// const myList = new LinkedList();
+// console.log(myList.push_front(1));
+// console.log(myList.push_front(2));
+// console.log(myList.push_back(3));
+// console.log(myList.push_back(4));
+// console.log(myList.pop_back());
+// console.log(myList.pop_front());
+// console.log(myList.delete(3));
+// console.log(myList.push_front(2));
+// console.log(myList.push_back(3));
+// console.log(myList.push_back(4));
+// console.log(myList.find(1));
+// myList.print();
 
 export default LinkedList;

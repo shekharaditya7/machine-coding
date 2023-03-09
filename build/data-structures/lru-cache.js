@@ -27,8 +27,8 @@ var LRUCache = /** @class */ (function () {
         }
         console.log("Cache Full");
         var valToBeDeleted = this.list.pop_back();
-        if (valToBeDeleted)
-            this.hash.delete(valToBeDeleted);
+        if (valToBeDeleted === null || valToBeDeleted === void 0 ? void 0 : valToBeDeleted.val)
+            this.hash.delete(valToBeDeleted.val);
         this.hash.set(val, val);
         this.list.push_front(val);
         this.list.print();

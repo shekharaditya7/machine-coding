@@ -32,7 +32,7 @@ class DoublyLinkedList {
       this.head = this.tail = newNode;
     }
     this.size++;
-    return this.head;
+    return newNode;
   }
 
   push_front(val: number) {
@@ -47,45 +47,54 @@ class DoublyLinkedList {
       this.head = this.tail = newNode;
     }
     this.size++;
-    return this.head;
+    return newNode;
   }
 
   pop_back() {
-    if (this.size === 0) return this.head?.val;
+    let deletedNode = null;
+    if (this.size === 0) return deletedNode;
     if (this.size === 1) {
-      const val = this.head?.val;
+      deletedNode = this.head;
       this.head = null;
       this.tail = null;
       this.size--;
-      return val;
+      return deletedNode;
     }
 
     if (this.tail) {
-      const val = this.tail.val;
+      deletedNode = this.tail;
       let prevNode: DoublyLinkedListNode | null = this.tail.prev;
       if (prevNode) {
         this.size--;
-        this.tail.prev = null;
+        deletedNode.prev = null;
+        deletedNode.next = null;
         prevNode.next = null;
         this.tail = prevNode;
       }
-      return val;
+      return deletedNode;
     }
   }
 
   pop_front() {
-    if (this.size === 0) return this.head;
-    if (this.size === 1) {
+    let deletedNode = null;
+    if (this.size === 0) return deletedNode;
+    if (this.size === 1 && this.head) {
+      deletedNode = this.head;
+      deletedNode.next = null;
+      deletedNode.prev = null;
       this.size--;
       this.head = this.tail = null;
-      return this.head;
+      return deletedNode;
     }
     if (this.head?.next) {
+      deletedNode = this.head;
       this.head = this.head?.next;
       this.head.prev = null;
+      deletedNode.next = null;
+      deletedNode.prev = null;
       this.size--;
     }
-    return this.head;
+    return deletedNode;
   }
 
   delete(val: number) {
@@ -95,8 +104,12 @@ class DoublyLinkedList {
 
     // Deleting First Node
     if (temp && temp.val === val) {
+      const deletedNode = temp;
       temp = temp.next;
       this.head = temp;
+
+      deletedNode.next = null;
+      deletedNode.prev = null;
       if (this.head) this.head.prev = null;
       this.size--;
 
@@ -104,16 +117,16 @@ class DoublyLinkedList {
         this.head = null;
         this.tail = null;
       }
-      return this.head;
+      return deletedNode;
     }
 
     while (temp && temp.val !== val) {
       temp = temp.next;
     }
-
     //Found
     if (temp?.val === val) {
       let prevNode = temp.prev;
+      const nodeToBeDeleted = temp;
 
       //update Tail
       if (temp === this.tail) {
@@ -123,11 +136,22 @@ class DoublyLinkedList {
         prevNode.next = temp.next;
         this.size--;
         if (temp.next?.prev) temp.next.prev = prevNode;
-        return this.head;
+
+        nodeToBeDeleted.next = null;
+        nodeToBeDeleted.prev = null;
+        return nodeToBeDeleted;
       }
     }
 
-    return this.head;
+    return null;
+  }
+
+  find(val: number) {
+    let temp: DoublyLinkedListNode | null = this.head;
+    while (temp && temp.val !== val) {
+      temp = temp.next;
+    }
+    return temp;
   }
 
   print() {
@@ -140,16 +164,17 @@ class DoublyLinkedList {
 }
 
 // const myList = new DoublyLinkedList();
-// myList.push_front(1);
-// myList.push_front(2);
-// myList.push_back(3);
-// myList.push_back(4);
-// myList.pop_back();
-// myList.pop_front();
-// myList.delete(3);
-// myList.push_front(2);
-// myList.push_back(3);
-// myList.push_back(4);
+// console.log(myList.push_front(1));
+// console.log(myList.push_front(2));
+// console.log(myList.push_back(3));
+// console.log(myList.push_back(4));
+// console.log(myList.pop_back());
+// console.log(myList.pop_front());
+// console.log(myList.delete(3));
+// console.log(myList.push_front(2));
+// console.log(myList.push_back(3));
+// console.log(myList.push_back(4));
+// console.log(myList.find(1));
 // myList.print();
 
 export default DoublyLinkedList;
