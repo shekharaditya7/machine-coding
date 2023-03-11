@@ -3,6 +3,8 @@ import LinkedList from "./linked-list";
 import LRUCache from "./lru-cache";
 import Queue from "./queue";
 import Deque from "./deque";
+import BinaryTree from "./binary-tree";
+import BST from "./bst";
 
 module.exports = {
   DoublyLinkedList,
@@ -10,4 +12,6 @@ module.exports = {
   LRUCache,
   Queue,
   Deque,
+  BinaryTree,
+  BST,
 };
