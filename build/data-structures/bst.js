@@ -100,7 +100,7 @@ var BinarySearchTree = /** @class */ (function (_super) {
             else {
                 var temp = this.inorderSuccesor(root.right);
                 if (temp) {
-                    root.val = temp === null || temp === void 0 ? void 0 : temp.val;
+                    root.val = temp.val;
                     root.right = this.deleteNode(root.right, temp.val);
                 }
                 return root;

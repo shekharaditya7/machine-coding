@@ -48,7 +48,7 @@ class BinarySearchTree extends BinaryTree {
       } else {
         let temp: BinaryTreeNode | null = this.inorderSuccesor(root.right);
         if (temp) {
-          root.val = temp?.val;
+          root.val = temp.val;
           root.right = this.deleteNode(root.right, temp.val);
         }
         return root;
